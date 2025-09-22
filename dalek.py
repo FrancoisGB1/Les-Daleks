@@ -1,3 +1,3 @@
-from movement import applyMove
+from Input import applyMove
 
 

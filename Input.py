@@ -1,4 +1,6 @@
 from grid import *
+import sys
+import os
 
 def spawnDoc():
     x, y = calcMiddle()
@@ -32,20 +34,26 @@ def applyMove(pos, direction):
     else:
         return pos    # ignore the move if it would leave the border
 
-def docMovement(doctorPos):
-    move = getInput()
-    if(move == 'W'):
+def playerInput(doctorPos):
+    input = getInput()
+    # Mouvements possibles pour le joueur
+    if(input == 'W'):
         doctorPos = applyMove(doctorPos, "up") 
         return doctorPos
-    elif(move == 'A'):
+    elif(input == 'A'):
         doctorPos = applyMove(doctorPos, "left")
         return doctorPos
-    elif(move == 'S'):
+    elif(input == 'S'):
         doctorPos = applyMove(doctorPos, "down")
         return doctorPos
-    elif(move == 'D'):
+    elif(input == 'D'):
         doctorPos = applyMove(doctorPos, "right")
         return doctorPos
+    
+    # Autres touches
+    elif(input == 'Q'):
+        os.system('cls')
+        sys.exit()
     else:
         return doctorPos
 
