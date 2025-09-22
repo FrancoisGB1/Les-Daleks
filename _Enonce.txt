@@ -1,0 +1,34 @@
+Mandat pour le jeu « Daleks »
+
+Le Cégep du Vieux Montréal souhaite développer un petit jeu inspiré de l'univers Doctor Who, où les étudiants pourront incarner le Docteur et tenter d'échapper à une horde de Daleks sur un plateau de jeu. À chaque niveau, les Daleks apparaissent en plus grand nombre et cherchent sans relâche à atteindre le Docteur.
+
+Le joueur peut se déplacer d'une case à la fois ou utiliser un téléporteur pour échapper à une mort imminente, mais cette téléportation reste partiellement aléatoire. De plus, un « zappeur » permet parfois de détruire instantanément les Daleks proches. Lorsque deux Daleks se heurtent, ils laissent derrière eux un tas de ferraille qui neutralise tout Dalek qui s'y fracasse à son tour.
+
+Le jeu se termine dès que le Docteur est rejoint par un Dalek. Les points cumulés (crédits cosmiques) dépendent du nombre de Daleks éliminés, et il est possible de visualiser un classement des meilleures parties.
+
+L'interface peut être minimaliste, mais il est souhaité qu'elle indique clairement :
+
+· la position du Docteur et des Daleks,
+
+· les tas de ferraille apparus sur le terrain,
+
+· le score en cours et les fonctionnalités spéciales (téléporteur, zappeur),
+
+· la fin de la partie lorsque le Docteur est capturé.
+
+Il importe que la réalisation soit rapide et ludique, afin de proposer un jeu jouable dès les premières itérations. Les fonctionnalités plus avancées (gestion de différents modes de difficulté, options "Run to end", etc.) pourront être ajoutées progressivement selon la méthode Agile et l'évolution du prototype.
+
+Critères d'évaluation
+Ce travail aura une pondération en équipe. C'est-à-dire que les deux membres de l'équipe auront la même note. Le travail est en équipe de deux seulement. Aucun travail seul ne sera accepté. La note sera calculée sur un total de 4 points et la pondération du travail sera de 10 % de la note finale du cours. Pour ce travail, vous n'aurez qu'un seul critère d'évaluation :
+Qualité d'exécution du mandat et de l'attitude professionnelle.
+En terme plus simple, vous serez à évaluer sur la qualité du code, la qualité du produit final et votre aptitude à travailler en équipe selon les observations réalisées en classe et par message. L'évaluation sera réalisée selon une grille d'appréciation dont voici les différents éléments :
+A (4 points) = L'équipe a réalisé un produit final d'une qualité exceptionnelle et leur code est d'une qualité exceptionnelle et l'attitude d'équipe est exceptionnelle.
+B (3 points) = L'équipe a réalisé un produit final d'une bonne qualité et leur code est d'une bonne qualité et l'attitude d'équipe est bonne.
+C (2 points) = L'équipe a réalisé un produit final d'une bonne qualité ou leur code est d'une bonne qualité ou l'attitude d'équipe est bonne.
+D (1 point) = L'équipe a réalisé un produit final d'une qualité à améliorer ou leur code est d'une qualité à améliorer ou l'attitude d'équipe est à améliorer.
+E (0 point) = Le travail n'a pas été réalisé ou la personne étudiante n'a pas réalisé le travail en équipe ou l'équipe a réalisé un produit final n'est pas fonctionnel ou il n'est pas d'une qualité acceptable ou leur code n'est pas d'une qualité acceptable ou l'attitude d'équipe n'est pas acceptable.
+
+Pénalités
+Conformément à la PDÉA, le travail est soumis aux pénalités suivantes :
+- Retrait de 10% par jour de retard
+- Retrait de 1% par faute de français jusqu'à concurrence de 10%
