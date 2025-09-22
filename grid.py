@@ -29,6 +29,9 @@ def drawOutline():
         print("|", end="")
         gotoxy(WIDTH, y)
         print("|", end="")
+    gotoxy(0, HEIGHT + 1)
+    print("Press 'Q' to quit")
+
 
 def calcMiddle():
     x = WIDTH // 2
