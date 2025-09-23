@@ -6,21 +6,35 @@ from dalek import *
 
 
 # Main
-os.system('cls')
-drawOutline()
-doctorPos = spawnDoc()
-daleks = [initializeDalek(doctorPos)]
-daleks.append(initializeDalek(doctorPos))
-printAllDalek(daleks)
 
-while(1):
-    hideCursor()
-    oldPos = doctorPos
-    newPos = playerInput(doctorPos)
-    for i in range(len(daleks)):
-        clearPosition(daleks[i])
-        daleks[i] = moveDalek(daleks[i], doctorPos)
-    clearPosition(oldPos)
+isAlive = True
+replay = True
+replayInput = ''
+
+while replay:
+    os.system('cls')
+    drawOutline()
+    doctorPos = spawnDoc()
+    daleks = [initializeDalek(doctorPos)]
+    daleks.append(initializeDalek(doctorPos))
     printAllDalek(daleks)
-    printDoc(newPos)
-    doctorPos = newPos
+    
+    while(isAlive):
+        hideCursor()
+        oldPos = doctorPos
+        newPos = playerInput(doctorPos)
+        for i in range(len(daleks)):
+            clearPosition(daleks[i])
+            daleks[i] = moveDalek(daleks[i], newPos)
+            printDalek(daleks[i])
+            if (list(daleks[i]) == newPos):
+                isAlive = False
+        clearPosition(oldPos)
+        printDoc(newPos)
+        doctorPos = newPos
+
+    os.system('cls')
+    print("Vous avez perdu!")
+    replayInput = input("Voulez vous rejouer? (O/N) : ")
+    if replayInput == 'N':
+        replay = False
