@@ -7,18 +7,19 @@ from dalek import *
 
 # Main
 
-isAlive = True
 replay = True
-replayInput = ''
 
 while replay:
+    isAlive = True
+    replay = True
+    replayInput = ''
     os.system('cls')
     drawOutline()
     doctorPos = spawnDoc()
     daleks = [initializeDalek(doctorPos)]
     daleks.append(initializeDalek(doctorPos))
     printAllDalek(daleks)
-    
+
     while(isAlive):
         hideCursor()
         oldPos = doctorPos
