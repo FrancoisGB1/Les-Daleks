@@ -21,29 +21,30 @@ def printAllDalek(daleks):
     for dalek in daleks:
         printDalek(dalek)
 
+def step_toward(current, target):
+    if target > current:
+        return 1
+    if target < current:
+        return -1
+    return 0
+
 def moveDalek(dalekPos, doctorPos):
-    # left = dalekPos[0] - 1
-    # right = dalekPos[0] + 1
-    # up = dalekPos[1] + 1
-    # down = dalekPos[1] - 1
+    dalekX, dalekY = dalekPos
+    doctorX, doctorY = doctorPos
 
-    # diffLeft = abs(left - doctorPos[0])
-    # diffRight= abs(right - doctorPos[0])
-    # diffUp = abs(up - doctorPos[1])
-    # diffDown = abs(down - doctorPos[1])
+    # Determine meilleur X
+    new_x = dalekX + step_toward(dalekX, doctorX)
+    # Determine meilleur Y
+    new_y = dalekY + step_toward(dalekY, doctorY)
 
-
-
-    # if diffLeft < diffRight:
-    #     optimalX = diffLeft
-    # else:
-    #     optimalX = diffRight
+    # Choisir entre faire un mouvement horizontal
+    if abs(doctorX - dalekX) > abs(doctorY - dalekY):
+        return (new_x, dalekY)   # move horizontally
+    else:
+        return (dalekX, new_y)   # move vertically
     
-    # if diffUp < diffDown:
-    #     optimalY = diffUp
-    # else:
-    #     optimalY = diffDown
-    pass
+def checkCollisionDoctor(dalekPos, doctorPos):
+    return dalekPos == doctorPos
 
     
 
