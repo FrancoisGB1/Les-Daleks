@@ -18,24 +18,37 @@ while replay:
     doctorPos = spawnDoc()
     daleks = [initializeDalek(doctorPos)]
     daleks.append(initializeDalek(doctorPos))
+    daleks.append(initializeDalek(doctorPos))
+    ferailles = []
     printAllDalek(daleks)
 
     while(isAlive):
         hideCursor()
         oldPos = doctorPos
         newPos = playerInput(doctorPos)
-        for i in range(len(daleks)):
-            clearPosition(daleks[i])
-            daleks[i] = moveDalek(daleks[i], newPos)
-            printDalek(daleks[i])
-            if (list(daleks[i]) == newPos):
-                isAlive = False
         clearPosition(oldPos)
+
+        DalekCollisionProcess(daleks, ferailles)
+
+        printAllFerailles(ferailles)
         printDoc(newPos)
+
+        clearAllDaleks(daleks)
+        for i in reversed(range(len(daleks))):
+            daleks[i] = moveDalek(daleks[i], newPos)
+            if ranIntoFerailles(daleks[i], ferailles):
+                daleks.pop(i)
+            else:
+                printDalek(daleks[i])
+                if (list(daleks[i]) == newPos):
+                    isAlive = False
+        
+
         doctorPos = newPos
 
     os.system('cls')
     print("Vous avez perdu!")
-    replayInput = input("Voulez vous rejouer? (O/N) : ")
-    if replayInput == 'N':
-        replay = False
+    while replayInput.upper() != 'O' and replayInput.upper() != 'N': 
+        replayInput = input("Voulez vous rejouer? (O/N) : ")
+        if replayInput.upper() == 'N':
+            replay = False

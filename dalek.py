@@ -1,4 +1,4 @@
-from Input import applyMove, calculateExtremeCoords
+from Input import calculateExtremeCoords, clearPosition
 from grid import WIDTH, HEIGHT, gotoxy
 from random import seed, randint
 from time import time
@@ -21,6 +21,10 @@ def printAllDalek(daleks):
     for dalek in daleks:
         printDalek(dalek)
 
+def clearAllDaleks(daleks):
+    for dalek in daleks:
+        clearPosition(dalek)
+
 def step_toward(current, target):
     if target > current:
         return 1
@@ -39,17 +43,45 @@ def moveDalek(dalekPos, doctorPos):
 
     # Choisir entre faire un mouvement horizontal
     if abs(doctorX - dalekX) > abs(doctorY - dalekY):
-        return (new_x, dalekY)   # move horizontally
+        return (new_x, dalekY)   # bouge horizontalement
     else:
-        return (dalekX, new_y)   # move vertically
-    
-def checkCollisionDoctor(dalekPos, doctorPos):
-    return dalekPos == doctorPos
-
-    
-
-
+        return (dalekX, new_y)   # bouge verticalement
         
 
-
+def checkCollisionDaleks(daleks):
+    for i in range(len(daleks)):
+        for j in range(i+1, len(daleks)):
+            if daleks[i] == daleks[j]:
+                return daleks[i]
     
+    return None
+
+def killDalek(position, daleks):
+    indexesToPop = []
+    for i in range(len(daleks)):
+        if daleks[i] == position:
+            indexesToPop.append(i)
+
+    for indexToPop in reversed(indexesToPop): # reversed pour eviter d'utiliser un index hors de la liste
+        daleks.pop(indexToPop)
+    
+    return daleks
+
+def DalekCollisionProcess(daleks, ferailles):
+    collision = checkCollisionDaleks(daleks)
+    if collision != None: 
+        ferailles.append(collision)
+        daleks = killDalek(collision, daleks)
+
+def printAllFerailles(ferailles):
+    for feraille in ferailles:
+        gotoxy(feraille[0], feraille[1])
+        print("F")
+
+def ranIntoFerailles(dalek, ferailles):
+    dalekDied = False
+    for feraille in ferailles:
+        if feraille == dalek:
+            dalekDied = True
+
+    return dalekDied    
