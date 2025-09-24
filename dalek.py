@@ -56,7 +56,8 @@ def checkCollisionDaleks(daleks):
     
     return None
 
-def killDalek(position, daleks):
+
+def killDalek(position, daleks, score):
     indexesToPop = []
     for i in range(len(daleks)):
         if daleks[i] == position:
@@ -64,14 +65,19 @@ def killDalek(position, daleks):
 
     for indexToPop in reversed(indexesToPop): # reversed pour eviter d'utiliser un index hors de la liste
         daleks.pop(indexToPop)
+        score += 1
     
-    return daleks
+    return daleks, score
 
-def DalekCollisionProcess(daleks, ferailles):
+def DalekCollisionProcess(daleks, ferailles, score):
     collision = checkCollisionDaleks(daleks)
     if collision != None: 
         ferailles.append(collision)
-        daleks = killDalek(collision, daleks)
+        daleks, score = killDalek(collision, daleks, score)
+        gotoxy(0, HEIGHT + 2)
+        print(f"Score : {score}")
+
+    return score
 
 def printAllFerailles(ferailles):
     for feraille in ferailles:
