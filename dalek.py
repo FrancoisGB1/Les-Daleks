@@ -1,6 +1,7 @@
 from Input import calculateExtremeCoords, clearPosition
 from grid import WIDTH, HEIGHT, gotoxy
 from random import seed, randint
+from util import printScore
 from time import time
 
 seed(time())
@@ -49,12 +50,13 @@ def moveDalek(dalekPos, doctorPos):
         
 
 def checkCollisionDaleks(daleks):
+    collisions = []
     for i in range(len(daleks)):
         for j in range(i+1, len(daleks)):
             if daleks[i] == daleks[j]:
-                return daleks[i]
+                collisions.append(daleks[i])
     
-    return None
+    return collisions
 
 
 def killDalek(position, daleks, score):
@@ -70,12 +72,17 @@ def killDalek(position, daleks, score):
     return daleks, score
 
 def DalekCollisionProcess(daleks, ferailles, score):
-    collision = checkCollisionDaleks(daleks)
-    if collision != None: 
+    collisions = checkCollisionDaleks(daleks)
+
+    for collision in collisions:
         ferailles.append(collision)
         daleks, score = killDalek(collision, daleks, score)
-        gotoxy(0, HEIGHT + 2)
-        print(f"Score : {score}")
+        printScore(score)
+    # if collisions != None: 
+    #     ferailles.append(collisions)
+    #     daleks, score = killDalek(collisions, daleks, score)
+    #     gotoxy(0, HEIGHT + 2)
+    #     print(f"Score : {score}")
 
     return score
 
