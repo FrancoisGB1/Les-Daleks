@@ -43,15 +43,14 @@ while replay:
             if ranIntoFerailles(daleks[i], ferailles):
                 daleks.pop(i)
                 score += 1
-                gotoxy(0, HEIGHT + 2)
-                print(f"Score : {score}")
+                printScore(score)
             else:
                 printDalek(daleks[i])
                 if list(daleks[i]) == doctorPos:
                     isAlive = False
 
     os.system('cls')
-    print("Vous avez perdu!")
+    print(f"Vous avez perdu! Votre score: {score}")
     while replayInput.upper() not in ('O', 'N'):
         replayInput = input("Voulez vous rejouer? (O/N) : ")
         if replayInput.upper() == 'N':
