@@ -12,7 +12,7 @@ while replay:
     isAlive = True
     replayInput = ''
     daleksToSpawn = 3
-    newDaleksPerWave = 2
+    newDaleksPerWave = 2 # varie selon la difficulté
     os.system('cls')
     drawOutline()
     doctorPos = spawnDoc()
@@ -20,7 +20,7 @@ while replay:
     # create 3 daleks to start
     daleks = spawnDalekWave(daleksToSpawn, doctorPos)
 
-    ferailles = []
+    ferrailles = []
     printAllDalek(daleks)
 
     while isAlive:
@@ -37,15 +37,15 @@ while replay:
 
         clearPosition(oldPos)
 
-        score = DalekCollisionProcess(daleks, ferailles, score)
+        score = DalekCollisionProcess(daleks, ferrailles, score)
 
-        printAllFerailles(ferailles)
+        printAllFerrailles(ferrailles)
         printDoc(doctorPos)
 
         clearAllDaleks(daleks)
         for i in reversed(range(len(daleks))):
             daleks[i] = moveDalek(daleks[i], doctorPos)
-            if ranIntoFerailles(daleks[i], ferailles):
+            if ranIntoFerrailles(daleks[i], ferrailles):
                 daleks.pop(i)
                 score += 1
                 printScore(score)
@@ -57,6 +57,8 @@ while replay:
     os.system('cls')
     print(f"Vous avez perdu! Votre score: {score}")
     while replayInput.upper() not in ('O', 'N'):
-        replayInput = input("Voulez vous rejouer? (O/N) : ")
+        os.system('cls')
+        print("Voulez vous rejouer? (O/N)")
+        replayInput = getInput()
         if replayInput.upper() == 'N':
             replay = False
