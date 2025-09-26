@@ -73,7 +73,7 @@ def applyMove(pos, direction):
         return pos
 
 
-def playerInput(doctorPos, daleks, score):
+def playerInput(doctorPos, daleks, score, teleporterCooldown, zapCooldown):
     """Gère les entrées clavier du joueur pour déplacer le docteur ou utiliser des actions spéciales.
 
     :param doctorPos: Position actuelle du docteur.
@@ -88,6 +88,7 @@ def playerInput(doctorPos, daleks, score):
     :return: Nouvelle position du docteur, liste mise à jour des daleks et score actualisé.
     :rtype: tuple (liste [posx, posy], liste de listes [[posx, posy], ...], int)
     """
+    maxCooldown = 4
     key = getInput()
     # Movement keys
     if key == 'W':
@@ -102,16 +103,30 @@ def playerInput(doctorPos, daleks, score):
     elif key == 'Q':
         os.system('cls')
         sys.exit()
+    # Zapper 
     elif key == 'Z':
-        daleks, score = zapDaleks(daleks, doctorPos, score)
-        gotoxy(0, HEIGHT + 2)
-        print(f"Score : {score}")
+        if zapCooldown >= maxCooldown:
+            daleks, score = zapDaleks(daleks, doctorPos, score)
+            gotoxy(0, HEIGHT + 2)
+            print(f"Score : {score}")
+            zapCooldown = 0    
+    # Teleporter       
     elif key == 'T':
-        doctorPos = teleportDoctor(daleks)  
-        return doctorPos, daleks, score
+        if teleporterCooldown >= maxCooldown:
+            doctorPos = teleportDoctor(daleks)  
+            teleporterCooldown = 0
+
+    # Increment cooldowns and print them
+
+    zapCooldown = min(zapCooldown + 1, maxCooldown)
+    gotoxy(0, HEIGHT + 3)
+    print(f"Zapper(Z) cooldown : {zapCooldown}/{maxCooldown}")
+    teleporterCooldown = min(teleporterCooldown + 1, maxCooldown)
+    gotoxy(0, HEIGHT + 4)
+    print(f"Teleporter(T) cooldown : {teleporterCooldown}/{maxCooldown}")
 
     # Always return updated values
-    return doctorPos, daleks, score
+    return doctorPos, daleks, score, teleporterCooldown, zapCooldown
 
 
 def prepareMovement(doctorPos):
@@ -162,8 +177,8 @@ def zapDaleks(daleks, doctorPos, score):
 """
 
     dx, dy = doctorPos
-    min_x, max_x = dx - 1, dx + 1
-    min_y, max_y = dy - 1, dy + 1
+    min_x, max_x = dx - 2, dx + 2
+    min_y, max_y = dy - 2, dy + 2
 
     survivors = []
     killed = 0
@@ -215,3 +230,26 @@ def replayOrNot():
             replay = False    
     
     return replay
+
+
+def difficultyMenu(difficulty):
+    """Affiche le menu de difficulté et retourne le choix du joueur.
+    
+    :return: Niveau de difficulté choisi (1, 2 ou 3).
+    :rtype: int
+    """
+   
+    while difficulty not in (1, 2, 3):
+        os.system('cls')
+        print("======================")
+        print("   CHOISISSEZ UNE DIFFICULTÉ")
+        print("======================")
+        print("1 - Facile")
+        print("2 - Normal")
+        print("3 - Difficile")
+        print("======================")
+        x = input("Votre choix (1/2/3) : ")
+        if x.isdigit():
+            difficulty = int(x)
+    
+    return difficulty

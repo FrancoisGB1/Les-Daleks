@@ -10,3 +10,5 @@ def printScore(score):
     gotoxy(0, HEIGHT + 2)
     print(f"Score : {score}")
 
+
+

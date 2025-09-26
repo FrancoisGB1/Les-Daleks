@@ -47,6 +47,10 @@ def drawOutline():
     print("Press 'Q' to quit")
     gotoxy(0, HEIGHT + 2)
     print("Score : 0")
+    gotoxy(0, HEIGHT + 3)
+    print(f"Zapper(Z) cooldown : 4/4")
+    gotoxy(0, HEIGHT + 4)
+    print(f"Teleporter(T) cooldown : 4/4")
 
 
 def calcMiddle():
