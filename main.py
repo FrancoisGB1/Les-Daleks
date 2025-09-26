@@ -6,6 +6,7 @@ from dalek import *
 
 # Main
 replay = True
+lastScores = []  # keep 10 last scores
 
 # LOOP FOR REPLAY ----------------------------
 while replay:
@@ -67,6 +68,8 @@ while replay:
 
 
     # replay loop conditional and final score --------------------------------------------
+    os.system('cls')
 
-    print(f"Vous avez perdu! Votre score: {score}")
-    replay = replayOrNot()
+
+
+    replay, lastScores = replayOrNot(lastScores, score)

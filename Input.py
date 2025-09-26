@@ -213,22 +213,41 @@ def teleportDoctor(daleks):
         if newPos not in daleks:
             return newPos
 
-def replayOrNot():
-    """Validation de si le joueur veut rejouer ou non
-    :return: Si le joueur veut rejouer ou non
-    :rtype: boolean
+def replayOrNot(lastScores, score):
+    """Validation de si le joueur veut rejouer ou non.
+    Affiche l'historique (max 10), le meilleur score et la moyenne.
+    Ajoute aussi le score courant à l'historique.
+
+    :param lastScores: Liste des derniers scores (chronologique)
+    :type lastScores: list[int]
+    :param score: Score obtenu à la fin de la partie en cours
+    :type score: int
+    :return: (rejouer_ou_non, historique_scores_mis_a_jour)
+    :rtype: tuple[bool, list[int]]
     """
+    # Ajouter le score courant et garder seulement les 10 derniers
+    lastScores = (lastScores + [score])[-10:]
+
     replayInput = ''
     replay = True
     while replayInput.upper() not in ('O', 'N'):
         os.system('cls')
-        print("Voulez vous rejouer? (O/N)")
+
+        print("=== Derniers scores (max 10) ===")
+        for i, s in enumerate(lastScores, 1):
+            print(f"{i}. {s}")
+
+        if lastScores:
+            print(f"\nMeilleur score : {max(lastScores)}")
+            print(f"Moyenne : {sum(lastScores)/len(lastScores):.2f}")
+
+        print("\nVoulez vous rejouer? (O/N)")
         replayInput = getInput()
-        print(replayInput)
         if replayInput.upper() == 'N':
             replay = False    
-    
-    return replay
+
+    return replay, lastScores
+
 
 
 def difficultyMenu(difficulty):
