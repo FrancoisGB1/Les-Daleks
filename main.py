@@ -67,6 +67,4 @@ while replay:
 
 
     # replay loop conditional and final score --------------------------------------------
-
-    print(f"Vous avez perdu! Votre score: {score}")
-    replay = replayOrNot()
+    replay = replayOrNot(score)

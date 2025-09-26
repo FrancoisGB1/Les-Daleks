@@ -213,8 +213,10 @@ def teleportDoctor(daleks):
         if newPos not in daleks:
             return newPos
 
-def replayOrNot():
+def replayOrNot(score):
     """Validation de si le joueur veut rejouer ou non
+    :param score: Pour afficher le score du joueur
+    :type score: int
     :return: Si le joueur veut rejouer ou non
     :rtype: boolean
     """
@@ -222,6 +224,7 @@ def replayOrNot():
     replay = True
     while replayInput.upper() not in ('O', 'N'):
         os.system('cls')
+        print(f"Vous avez perdu! Votre score: {score}")
         print("Voulez vous rejouer? (O/N)")
         replayInput = getInput()
         print(replayInput)
