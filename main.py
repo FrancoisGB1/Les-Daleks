@@ -11,20 +11,25 @@ while replay:
     score = 0
     isAlive = True
     replayInput = ''
+    daleksToSpawn = 3
+    newDaleksPerWave = 2
     os.system('cls')
     drawOutline()
     doctorPos = spawnDoc()
 
     # create 3 daleks to start
-    daleks = [initializeDalek(doctorPos)]
-    daleks.append(initializeDalek(doctorPos))
-    daleks.append(initializeDalek(doctorPos))
+    daleks = spawnDalekWave(daleksToSpawn, doctorPos)
 
     ferailles = []
     printAllDalek(daleks)
 
     while isAlive:
         hideCursor()
+
+        if not daleks:
+            daleksToSpawn += newDaleksPerWave
+            daleks = spawnDalekWave(daleksToSpawn,doctorPos)
+
         oldPos = doctorPos
 
         # player input now returns all three values (will need to update this as we add more parameters, or shove into one list state = [])

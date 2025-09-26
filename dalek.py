@@ -98,3 +98,9 @@ def ranIntoFerailles(dalek, ferailles):
             dalekDied = True
 
     return dalekDied    
+
+def spawnDalekWave(daleksToSpawn, doctorPos):
+    daleks = []
+    for i in range(daleksToSpawn):
+        daleks.append(initializeDalek(doctorPos))
+    return daleks
