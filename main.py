@@ -10,7 +10,6 @@ replay = True
 while replay:
     score = 0
     isAlive = True
-    replayInput = ''
     daleksToSpawn = 3
     newDaleksPerWave = 2 # varie selon la difficulté
     os.system('cls')
@@ -56,9 +55,4 @@ while replay:
 
     os.system('cls')
     print(f"Vous avez perdu! Votre score: {score}")
-    while replayInput.upper() not in ('O', 'N'):
-        os.system('cls')
-        print("Voulez vous rejouer? (O/N)")
-        replayInput = getInput()
-        if replayInput.upper() == 'N':
-            replay = False
+    replay = replayOrNot()

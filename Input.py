@@ -198,3 +198,20 @@ def teleportDoctor(daleks):
         # Ensure not colliding with Daleks
         if newPos not in daleks:
             return newPos
+
+def replayOrNot():
+    """Validation de si le joueur veut rejouer ou non
+    :return: Si le joueur veut rejouer ou non
+    :rtype: boolean
+    """
+    replayInput = ''
+    replay = True
+    while replayInput.upper() not in ('O', 'N'):
+        os.system('cls')
+        print("Voulez vous rejouer? (O/N)")
+        replayInput = getInput()
+        print(replayInput)
+        if replayInput.upper() == 'N':
+            replay = False    
+    
+    return replay
