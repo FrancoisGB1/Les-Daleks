@@ -177,15 +177,14 @@ def zapDaleks(daleks, doctorPos, score):
 """
 
     dx, dy = doctorPos
-    min_x, max_x = dx - 2, dx + 2
-    min_y, max_y = dy - 2, dy + 2
 
     survivors = []
     killed = 0
     for d in daleks:
-        if min_x <= d[0] <= max_x and min_y <= d[1] <= max_y:
+        # X distance counts double compared to Y
+        if abs(d[0] - dx) <= 4 and abs(d[1] - dy) <= 2:
             clearPosition(d)
-            killed += 1  # zap it
+            killed += 1
         else:
             survivors.append(d)
 
